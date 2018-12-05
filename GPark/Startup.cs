@@ -33,8 +33,14 @@ namespace GPark
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapSpaFallbackRoute(
+                    name: "default",
+                    defaults: new { controller = "Spa", action= "Index" } );
+            });
         }
     }
 }
